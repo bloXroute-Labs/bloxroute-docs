@@ -19,6 +19,8 @@ This section assumes that you have Docker installed. If you would like to instal
 
 Currently, we are only distributing our docker image from a private Docker Hub repository. (In the future, we expect to make our docker image public.) Accordingly, to access the docker image you will need a Docker Hub account.
 
+1. Please ensure that the needed ports are open on your firewall. The bloXroute Gateway requires port 9001 be open. 
+
 1. Create username/password on Docker Hub (https://hub.docker.com/).
 
 2. Provide bloXroute with username or email address for the account. We will add you to our team so you can access the docker image. 
@@ -69,7 +71,7 @@ This tutorial assumes that you are installing the Gateway from Github onto linux
     whitelist=127.0.0.1
     ```
 
-1. Please ensure that the needed ports are open on your firewall. The bloXroute Gateway requires ports 9001 be open. 
+1. Please ensure that the needed ports are open on your firewall. The bloXroute Gateway requires port 9001 be open. 
 
 2. Make sure the basic requirements are installed. For example, you may check for the basic requirements using the 'which' command.
     ```
