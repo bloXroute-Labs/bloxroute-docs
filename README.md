@@ -1,6 +1,6 @@
 ## Installation of the bloXroute Gateway and Blockchain-Logger 
 
-This document describes installation of the bloXroute Gateway and Blockchain-Logger for the bloXroute Miner Test. For this test, it is expected that you are running two BitcoinCash full nodes connected to the testnet. The bloXroute Gateway is to be connected to the first full node, while the Blockchain-Logger is to be connected to the second full node. 
+This document describes installation of the bloXroute Gateway and Blockchain-Logger for the bloXroute Miner Test. For this test, it is expected that you are running a BitcoinCash full node connected to the testnet. The bloXroute Gateway is to be connected to the first full node, while the Blockchain-Logger is to be connected to the second full node. 
 
 The bloXroute Gateway is an application that connects your blockchain full node to the bloXroute block distribution network. Using the Gateway, the block distribution network is designed to propagate blocks to your full node faster than the traditional peer-to-peer blockchain network. It is recommended that you install the Gateway on the same server as your full node, or on a server with low latency to your full node. 
 
@@ -37,8 +37,13 @@ Currently, we are only distributing our docker image from a private Docker Hub r
 	
 5. Run the docker as a daemon. "Gateway Parameters" as described below may be passed in the run command to provide the IP address and port of the full node, etc. If using the "external-port" parameter, please update "-p 9001:9001" to "-p (new port):(new port)".
    ```
-   docker run -d -p 9001:9001 bloxroute/bxgateway:latest --blockchain-protocol BitcoinCash --blockchain-network Testnet
+   docker run -d -t Gateway -p 9001:9001 bloxroute/bxgateway:latest --blockchain-protocol BitcoinCash --blockchain-network Testnet
    ```
+
+    Once you've successfully installed the Gateway docker container, please stop the Gateway container and install the Blockchain-Logger. The Gateway will be used only during the second phase of our test and should be stopped during the first phase. You may stop the docker container by running:
+    ```
+    docker stop -t Gateway
+    ```
 
 **Gateway Parameters**
 
@@ -57,7 +62,15 @@ Currently, we are only distributing our docker image from a private Docker Hub r
 
 This tutorial assumes that you are installing the Gateway from Github onto linux and will be connecting to the BitcoinCash daemon on the localhost. These instructions assume that the machine you are installing on already has installations of python 3, git, and pip. Additionally, this tutorial assumes that the RPC ports for the full node are open to receive RPC commands. 
 
+1. Provide bloXroute with username or email address for the Github account you will use to access the repositories. We will add you to our team to give you access. 
+
+1. To ensure that your full node stays connected to the bloXroute Gateway, we advise that you whitelist the Gateway. This can be achieved by editing the ‘bitcoin.conf’ file in your bitcoin data directory to include a white list line specifying the IP of the Gateway (or the localhost, if appropriate). An example config line:
+    ```
+    whitelist=127.0.0.1
+    ```
+
 1. Please ensure that the needed ports are open on your firewall. The bloXroute Gateway requires ports 9001 be open. 
+
 2. Make sure the basic requirements are installed. For example, you may check for the basic requirements using the 'which' command.
     ```
     user@host$ which python3
@@ -118,7 +131,7 @@ This tutorial assumes that you are installing the Gateway from Github onto linux
     cd ..
 	```
 	
-9. Launch the gateway
+9. Launch the Gateway (these steps may be used to relaunch the Gateway after shutting it down)
     1. Ensure the python environment is activated
         ```
         source ./.bxgateway/bin/activate
