@@ -81,77 +81,31 @@ This tutorial assumes that you are installing the Gateway from Github onto linux
     user@host$ which git
     /usr/local/bin/git
     
-    user@host$ which pip
-    /usr/local/bin/pip
+    user@host$ python3 -m pip -V
+    pip 19.0.3 from /home/ubuntu/.local/lib/python3.6/site-packages/pip (python 3.6)
+    
     ```
     If a requirement is present, the directory location is returned, as shown above. If the requirement is not present, no location is returned. 
     
-3. Create a project directory
+5. Clone the repository 
     ```
-    mkdir gateway
-    cd gateway
+    git clone https://github.com/bloXroute-Labs/bloXroute-miner-test.git
+    ```
+
+7. Run the setup script
+    ```
+    cd bloXroute-miner-test/
+    ./gateway-setup.sh
     ```
     
-4. Setup a python environment for the installation 
+8. Run the Gateway. 
     ```
-    python3 -m venv .bxgateway
-    source ./.bxgateway/bin/activate
+    ./gateway-run.sh    
     ```
-
-5. Clone the repositories (Note: These are currently private repos but will be opened close to launch of the test.)
-    ```
-    git clone https://github.com/bloXroute-Labs/bxgateway.git
-    git clone https://github.com/bloXroute-Labs/bxcommon.git
-    ```
-
-7. Enter the bxgateway directory
-    ```
-    cd ./bxgateway/
-    ```
-
-8. Install the bxgateway project dependencies
-    ```
-    pip install -r requirements.txt
-    ```
-
-9. Enter the bxcommon directory
-    ```
-    cd ../bxcommon
-	```
-
-8. Install the bxgateway project dependencies
-    ```
-    pip install -r requirements.txt
-    ```    
-    If the installation is successfull, you should see output similar to:
-    ```
-    Successfully installed asn1crypto-0.24.0 astroid-1.6.5 bitcoin-1.1.42 certifi-2019.3.9 cffi-1.12.2 chardet-3.0.4 coincurve-11.0.0 coverage-4.3.4 idna-2.7 ipaddress-1.0.22 isort-4.3.16 lazy-object-proxy-1.3.1 mccabe-0.6.1 mock-2.0.0 pbr-5.1.3 pycparser-2.19 pycryptodome-3.6.4 pyelliptic-1.5.7 pylint-1.9.2 pympler-0.5 requests-2.19.1 rlp-0.6.0 six-1.12.0 urllib3-1.23 wrapt-1.11.1
-    ```
-    
-9. Return to parent directory
-    ```	
-    cd ..
-	```
-	
-9. Launch the Gateway (these steps may be used to relaunch the Gateway after shutting it down)
-    1. Ensure the python environment is activated
-        ```
-        source ./.bxgateway/bin/activate
-        ```
-    2. Add bxcommon to the python path
-        ```
-        export PYTHONPATH=$PYTHONPATH:`pwd`/bxcommon/src
-        export PYTHONPATH=$PYTHONPATH:`pwd`/bxgateway/src
-        ```
-    3. Run the gateway. The parameters are described further below. 
-        ```
-        python bxgateway/src/bxgateway/main.py --blockchain-protocol BitcoinCash --blockchain-network Testnet 
-        ```
-        
-        It is recommended that gateway is run using the 'nohup' or 'screen' commands to permit the gateway to persist even if the terminal is closed. For example,
-        ```
-        nohup python bxgateway/src/bxgateway/main.py --blockchain-protocol BitcoinCash --blockchain-network Testnet &
-        ```
+    The gateway script additionally accepts parameters as described in the Docker installation above. It is recommended that gateway is run using the 'nohup' or 'screen' commands to permit the gateway to persist even if the terminal is closed. For example,
+      ```
+      nohup python bxgateway/src/bxgateway/main.py --blockchain-protocol BitcoinCash --blockchain-network Testnet &
+      ```
 
 ## Blockchain-Logger
 
@@ -223,27 +177,25 @@ Any variables that do not have a default value **must** be set.
 
 ### Installing the Blockchain-Logger From Github 
 
-The Blockchain-Logger collects logs from your BitcoinCash full node and provides them to bloXroute. This installation assumes that you are installing the Blockchain-Logger on a server with a running full node. Currently this requires Python 2.7, we are working to upgrade the logger to Python 3. 
+The Blockchain-Logger collects logs from your BitcoinCash full node and provides them to bloXroute. This installation assumes that you are installing the Blockchain-Logger on a server with a running full node. Currently this requires Python 2.7, we are working to upgrade the logger to Python 3.  
 
-1. Clone the repository
+1. Ensure that you have Python 2.7 installed
+    ```
+    python --version
+    ```
+    
+    
+1. Clone the repository (this is already done if you've already installed the gateway)
    ```
-   git clone https://github.com/bloXroute-Labs/blockchain-logger
+   git clone https://github.com/bloXroute-Labs/bloXroute-miner-test.git
    ```
    
-2. Setup a python environment for the installation
+2. Run the Blockchain-Logger installation 
     ```
-    cd blockchain-logger
-    virtualenv logger --python=python2.7
-    source ./logger/bin/activate
+    ./logger-setup.sh
     ```
 
-   
-3. Install prerequisites
-    ```
-    pip install psutil python-bitcoinrpc
-    ```
-
-4. Set the environment variables. See the Environmental Variables table above for a description of each variable.  BLOCKCHAIN_LOG is the log file of the Bitcoin Cash node. It can often be found in the BitcoinCash data directory along with the wallet.dat files and blockchain data. For our test, NETWORK, NETWORK_NAME, and NTP_TIME are all fixed values as shown below. The RPCUSER and RPCPASS may be found in the bitcoin.conf file also in the BitcoinCash data directory. For DNS_NAME, please use the hostname of your full node, or use the following format your_organization.server_number.
+4. Edit the environment variables `logger-run.sh` file . See the Environmental Variables table above for a description of each variable.  BLOCKCHAIN_LOG is the log file of the Bitcoin Cash node. Please make sure the Blockchain-Logger has permission to read the log file. It can often be found in the BitcoinCash data directory along with the wallet.dat files and blockchain data. For our test, NETWORK, NETWORK_NAME, and NTP_TIME are all fixed values as shown below. The RPCUSER and RPCPASS may be found in the bitcoin.conf file also in the BitcoinCash data directory. For DNS_NAME, please use the hostname of your full node, or use the following format your_organization.server_number.
     ```
     export NETWORK='btc'
     export RPCUSER='[RPC USER NAME]'
@@ -270,11 +222,11 @@ The Blockchain-Logger collects logs from your BitcoinCash full node and provides
      ```
 5. Run the Blockchain-Logger
     ```
-    python run_logger.py
+    ./logger-run.sh
     ```
     It is recommended that Blockchain-Logger is run using the 'nohup' or 'screen' commands to permit the gateway to persist even if the terminal is closed. For example,
     ```
-    nohup python run_logger.py &
+    nohup ./logger-run.sh &
     ```
     
     
