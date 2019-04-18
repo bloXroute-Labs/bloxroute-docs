@@ -44,12 +44,12 @@ Currently, we are only distributing our docker image from a private Docker Hub r
 	
 5. Run the docker as a daemon. The gateway accepts various parameters as described in the Gateway Parameters section below. The parameters may be passed in the run command to provide the IP address and port of the full node, etc. If using the "external-port" parameter, please update "-p 9001:9001" to "-p (new port):(new port)".
    ```
-   docker run -d -t Gateway -p 9001:9001 bloxroute/bxgateway:latest --blockchain-protocol BitcoinCash --blockchain-network Testnet
+   docker run -d --name gateway -p 9001:9001 bloxroute/bxgateway:latest --blockchain-protocol BitcoinCash --blockchain-network Testnet --blockchain-ip 172.17.0.1
    ```
 
     Once you've successfully installed the Gateway docker container, please stop the Gateway container and install the Blockchain-Logger. The Gateway will be used only during the second phase of our test and should be stopped during the first phase. You may stop the docker container by running:
     ```
-    docker stop -t Gateway
+    docker stop -t gateway
     ```
 
 ### Installing the bloXroute Gateway From Github
