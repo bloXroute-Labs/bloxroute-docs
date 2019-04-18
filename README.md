@@ -168,7 +168,7 @@ This section describes the installation of the bloXroute Gateway in a pre-packag
 
 4. Run the docker as a daemon. Change "/path/to/your/bitcoin" to point to your bitcoin log directory.
     ```
-    docker run -d --env-file logger.env bloxroute/blockchain-logger:latest -v /path/to/your/bitcoin/bitcoin_debug.log:/var/bitcoin/bitcoin_debug.log 
+    docker run -d --env-file logger.env -v /path/to/your/bitcoin/bitcoin_debug.log:/var/bitcoin/bitcoin_debug.log bloxroute/blockchain-logger:latest
     ```
 
 
