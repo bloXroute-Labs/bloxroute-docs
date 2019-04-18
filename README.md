@@ -188,7 +188,7 @@ The Blockchain-Logger collects logs from your Bitcoin Cash full node and provide
 
 4. Edit the environment variables in the `logger-run.sh` file . See the Logger Environmental Variables table below for a description of each variable.  BLOCKCHAIN_LOG is the log file of the Bitcoin Cash node. Please make sure the Blockchain-Logger has permission to read the log file. It can often be found in the Bitcoin Cash data directory along with the wallet.dat files and blockchain data. For our test, NETWORK, NETWORK_NAME, and NTP_TIME are all fixed values as shown below. The RPCUSER and RPCPASS may be found in the bitcoin.conf file also in the Bitcoin Cash data directory. For DNS_NAME, please use the hostname of your full node, or a unique name.
     ```
-    export NETWORK='btc'
+    export NETWORK=btc
     export RPCUSER='[RPC USER NAME]'
     export RPCPASS='[RPC PASSWORD]'
     export RPCIP='[IP address of Bitcoin Cash full node]'
@@ -201,11 +201,11 @@ The Blockchain-Logger collects logs from your Bitcoin Cash full node and provide
 
     Complete example:
     ```
-    export NETWORK='btc'
+    export NETWORK=btc
     export RPCUSER='cKavQG4zBjI2gY1V'
     export RPCPASS='l4YYz3DhKrzIyPAd'
     export RPCIP='127.0.0.1'
-    export RPCPORT='8332'
+    export RPCPORT=8332
     export NETWORK_NAME='BCH_TESTNET'
     export DNS_NAME='bch.testnet1.bxrtest.com'
     export BLOCKCHAIN_LOG=/var/bitcoin/bitcoin_debug.log
