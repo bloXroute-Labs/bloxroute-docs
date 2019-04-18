@@ -140,7 +140,7 @@ This section describes the installation of the bloXroute Gateway in a pre-packag
    docker pull bloxroute/blockchain-logger:latest
    ```
  
-3. Create a file called logger.env with environment variables as shown below. Please fill in the requested information shown in brackets. See the Logger Environmental Variables table below for a description of each variable. A worked example is also shown below. BLOCKCHAIN_LOG is the log file of the Bitcoin Cash node. It can often be found in the Bitcoin Cash data directory along with the wallet.dat files and blockchain data. For our test, NETWORK, NETWORK_NAME, and NTP_TIME are all fixed values as shown below. The RPCUSER and RPCPASS may be found in the bitcoin.conf file also in the Bitcoin Cash data directory. For DNS_NAME, please use the hostname of your full node, or a unique name.
+3. Create a file called logger.env with environment variables as shown below. Please fill in the requested information shown in brackets. See the Logger Environmental Variables table below for a description of each variable. A worked example is also shown below. For our test, NETWORK, NETWORK_NAME, and NTP_TIME are all fixed values as shown below. The RPCUSER and RPCPASS may be found in the bitcoin.conf file also in the Bitcoin Cash data directory. For DNS_NAME, please use the hostname of your full node, or a unique name.
     ```
     NETWORK='btc'
     RPCUSER='[RPC USER NAME]'
@@ -149,7 +149,7 @@ This section describes the installation of the bloXroute Gateway in a pre-packag
     RPCPORT='[Bitcoin Cash full node RPC port]'
     NETWORK_NAME='BCH_TESTNET'
     DNS_NAME=[hostname of the machine or a unique name]
-    BLOCKCHAIN_LOG=[log location]
+    BLOCKCHAIN_LOG=/var/bitcoin/bitcoin_debug.log
     NTP_TIME=1
     ```
 
@@ -168,7 +168,7 @@ This section describes the installation of the bloXroute Gateway in a pre-packag
 
 4. Run the docker as a daemon. Change "/path/to/your/bitcoin" to point to your bitcoin log directory.
     ```
-    docker run -d bloxroute/blockchain-logger:latest -v /path/to/your/bitcoin/bitcoin_debug.log:/var/bitcoin/bitcoin_debug.log --env-file logger.env
+    docker run -d --env-file logger.env bloxroute/blockchain-logger:latest -v /path/to/your/bitcoin/bitcoin_debug.log:/var/bitcoin/bitcoin_debug.log 
     ```
 
 
