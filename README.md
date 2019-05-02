@@ -44,7 +44,7 @@ Currently, we are only distributing our docker image from a private Docker Hub r
 	
 5. Run the docker as a daemon. The gateway accepts various parameters as described in the Gateway Parameters section below. The parameters may be passed in the run command to provide the IP address and port of the full node, etc. If using the "external-port" parameter, please update "-p 9001:9001" to "-p (new port):(new port)".
    ```
-   docker run -d --name gateway -p 9001:9001 bloxroute/bxgateway:latest --blockchain-protocol BitcoinCash --blockchain-network Testnet --blockchain-ip 172.17.0.1
+   docker run -d --name gateway -p 9001:9001 bloxroute/bxgateway:latest --blockchain-protocol BitcoinCash --blockchain-network Testnet --blockchain-ip 172.17.0.1 --blockchain-port 18333 
    ```
 
     Once you've successfully installed the Gateway docker container, please stop the Gateway container and install the Blockchain-Logger. The Gateway will be used only during the second phase of our test and should be stopped during the first phase. You may stop the docker container by running:
@@ -91,7 +91,7 @@ This tutorial assumes that you are installing the Gateway from Github onto linux
     
 8. Run the Gateway. 
     ```
-    ./gateway-run.sh    
+    ./gateway-run.sh --blockchain-port 18333 
     ```
     The gateway script additionally accepts parameters as described in the Gateway Parameters section below. It is recommended that gateway is run using the 'nohup' or 'screen' commands to permit the gateway to persist even if the terminal is closed. For example,
       ```
@@ -114,7 +114,7 @@ These parameters should not be changed unless needed.
 | --------- | ----------- | -------------|
 | external-port | External port is the port on which the gateway can receive external connections from other gateways in the network. The default is 9001. | 9001 |
 | blockchain-ip | The IP address of your Bitcoi Cash full node. Default is "127.0.0.1".  | "127.0.0.1" |
-| blockchain-port | The port of your Bitcoin Cash full node. Default is 8333.  | 8333 |
+| blockchain-port | The port of your Bitcoin Cash full node. Default is 8333. Because we are using the testnet, this should be set to 18333.  | 8333 |
 | continent | The continent of your Bitcoin Cash full node. Valid `continent` values are `NA` (North America), `SA` (South and Central America), `EU` (Europe), `OC` (Oceania), `AS` (Asia), `AF` (Africa), `AN` (Antarctica). | AS |
 | country | The country of your Bitcoin Cash full node. | China |
 
