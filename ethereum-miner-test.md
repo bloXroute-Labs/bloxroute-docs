@@ -138,7 +138,7 @@ This section describes the installation of the bloXroute Gateway in a pre-packag
     RPCPORT=[Ethereum full node RPC port]
     NETWORK_NAME=ETH
     DNS_NAME=[unique name for the full node, should include your organization name, e.g, "bestpool-01"]
-    BLOCKCHAIN_LOG=/var/ethereum/log/ethereum_debug.log
+    BLOCKCHAIN_LOG=/var/ethereum/ethereum_debug.log
     NTP_TIME=1
     ```
 
@@ -192,7 +192,7 @@ The Blockchain-Logger collects logs from your Ethereum full node and provides th
     export RPCPORT='8545'
     export NETWORK_NAME='ETH_MAINNET'
     export DNS_NAME='bestpool-01'
-    export BLOCKCHAIN_LOG=/var/ethereum/log/ethereum_debug.log
+    export BLOCKCHAIN_LOG=/var/ethereum/ethereum_debug.log
     export NTP_TIME=1
      ```
 5. Run the Blockchain-Logger
