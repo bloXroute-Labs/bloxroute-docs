@@ -47,46 +47,9 @@ Currently, we are only distributing our docker image from a private Docker Hub r
     docker stop -t gateway
     ```
 
-### Installing the bloXroute Gateway From Github
+### [Alternate Installation]
 
-This tutorial assumes that you are installing the Gateway from Github onto linux and will be connecting to the Ethereum daemon on the localhost. These instructions assume that the machine you are installing on already has installations of python 3, git, and pip. 
 
-1. Provide bloXroute with username or email address for the Github account you will use to access the repositories. We will open access for you to our repositories. 
-
-1. Please ensure that the needed ports are open on your firewall. The bloXroute Gateway requires port 9001 be open. 
-
-2. Make sure the basic requirements are installed. For example, you may check for the basic requirements using the 'which' command.
-    ```
-    user@host$ which python3
-    /usr/local/bin/python3
-    
-    user@host$ which git
-    /usr/local/bin/git
-    
-    user@host$ python3 -m pip -V
-    pip 19.0.3 from /home/ubuntu/.local/lib/python3.6/site-packages/pip (python 3.6)
-    
-    ```
-    
-5. Clone the repository. Please note that our organization requires two-factor authentication.  
-    ```
-    git clone https://github.com/bloXroute-Labs/bloXroute-miner-test.git
-    ```
-
-7. Run the setup script
-    ```
-    cd bloXroute-miner-test/
-    ./gateway-setup.sh
-    ```
-    
-8. Run the Gateway. 
-    ```
-    ./gateway-run.sh --blockchain-port 30303  
-    ```
-    The gateway script additionally accepts parameters as described in the Gateway Parameters section below. It is recommended that gateway is run using the 'nohup' or 'screen' commands to permit the gateway to persist even if the terminal is closed. For example,
-      ```
-      nohup ./gateway-run.sh &
-      ```
 
 ### Gateway Parameters
 **Required Gateway Parameters**
