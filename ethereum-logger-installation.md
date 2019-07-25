@@ -8,9 +8,6 @@ For our mining pool participants, we ask that you connect the Blockchain-Logger 
 
 This document describes two ways that you may install the Blockchain-Logger, using either packaged docker images, or via a github download. 
 
-
-## Blockchain-Logger
-
 ### Installing the Blockchain-Logger From Docker
 
 This section describes the installation of the bloXroute Gateway in a pre-packaged Docker form. This section assumes you have Docker installed and that you have created an account with Docker Hub and provided the account name or email address to bloXroute. Additionally, this section assumes that the RPC ports for the full node are open to receive RPC commands. 
@@ -33,8 +30,8 @@ This section describes the installation of the bloXroute Gateway in a pre-packag
     NETWORK=eth
     RPCIP=[IP address of Ethereum full node]
     RPCPORT=[Ethereum full node RPC port]
-    NETWORK_NAME=ETH
-    DNS_NAME=[unique name for the full node, should include your organization name, e.g, "bestpool-01"]
+    NETWORK_NAME=ETH_MAINNET
+    DNS_NAME=[unique name for the full node, should include your organization name and regio, e.g, "bestpool-china-01"]
     BLOCKCHAIN_LOG=/var/ethereum/ethereum_debug.log
     NTP_TIME=1
     ```
@@ -45,7 +42,7 @@ This section describes the installation of the bloXroute Gateway in a pre-packag
     RPCIP=172.17.0.1
     RPCPORT=8545
     NETWORK_NAME=ETH_MAINNET
-    DNS_NAME=bestpool-01
+    DNS_NAME=bestpool-china-01
     BLOCKCHAIN_LOG=/var/ethereum/log/ethereum_debug.log
     NTP_TIME=1 
   
@@ -77,7 +74,7 @@ The Blockchain-Logger collects logs from your Ethereum full node and provides th
     export RPCIP='[IP address of Ethereum full node]'
     export RPCPORT='[Ethereum full node RPC port]'
     export NETWORK_NAME='ETH_MAINNET'
-    export DNS_NAME=[unique name for the full node, should include your organization name, e.g, "bestpool-01"]
+    export DNS_NAME=[unique name for the full node, should include your organization name and region, e.g, "bestpool-china-01"]
     export BLOCKCHAIN_LOG=[log location]
     export NTP_TIME=1
     ```
@@ -88,7 +85,7 @@ The Blockchain-Logger collects logs from your Ethereum full node and provides th
     export RPCIP='127.0.0.1'
     export RPCPORT='8545'
     export NETWORK_NAME='ETH_MAINNET'
-    export DNS_NAME='bestpool-01'
+    export DNS_NAME='bestpool-china-01'
     export BLOCKCHAIN_LOG=/var/ethereum/ethereum_debug.log
     export NTP_TIME=1
      ```
@@ -107,12 +104,12 @@ Any variables that do not have a default value **must** be set.
 
 | Environment Variables | Description | Default |
 | --------- | ----------- | -------------|
-| NETWORK | Blockchain network type - for this test 'eth' is used | btc |
+| NETWORK | Blockchain network type - for this test 'eth' is used | eth |
 | RPCUSER | If applicable, username to authenticate with client RPC API | rpcuser1 |
 | RPCPASS | If applicable, password to authenticate with client RPC API | rpcpass1 |
 | RPCIP | IP address the full node is listening for RPCs on | 127.0.0.1 |
 | RPCPORT | Port the full node is listening for RPCs on | 9332 |
 | NETWORK_NAME | Name of the network, this is fixed for the test  |'ETH_MAINNET' |
-| DNS_NAME | Unique name for the full node, should include your organization name, e.g, "bestpool-01" | **None** |
+| DNS_NAME | Unique name for the full node, should include your organization name and region, e.g, "bestpool-china-01" | **None** |
 | BLOCKCHAIN_LOG | Location of the blockchain client's logs | **None** |
 | NTP_TIME | Whether or not to use NTP time, 1 for ntp time | 1 |

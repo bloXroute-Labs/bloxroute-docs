@@ -7,8 +7,6 @@ The bloXroute Gateway is an application that connects your blockchain full node 
 This document describes two ways that you may install the bloXroute Gateway and the Blockchain-Logger, using either packaged docker images, or via a github download. In future versions of the Gateway we expect to provide pre-packaged 'pip install' options. 
 
 
-## bloXroute Gateway
-
 ### Installing the bloXroute Gateway from Docker
 
 This section describes the installation of the bloXroute Gateway in a pre-packaged Docker form. This permits an easy, quick installation. 
@@ -40,10 +38,6 @@ Currently, we are only distributing our docker image from a private Docker Hub r
    docker run -d --name gateway -p 9001:9001 bloxroute/bxgateway:latest --blockchain-protocol Ethereum --blockchain-network Mainnet --blockchain-ip 172.17.0.1 --blockchain-port 30303 
    ```
 
-    Once you've successfully installed the Gateway docker container, please stop the Gateway container and install the Blockchain-Logger. The Gateway will be used only during the second phase of our test and should be stopped during the first phase. You may stop the docker container by running:
-    ```
-    docker stop -t gateway
-    ```
 
 ### Pip Installation
 
@@ -63,10 +57,11 @@ These parameters should not be changed unless needed.
 
 | Parameter | Description | Example |
 | --------- | ----------- | -------------|
+| external-ip | External IP is the external network IP of the Gateway on which the gateway can receive external connections from other gateways in the network. | None |
 | external-port | External port is the port on which the gateway can receive external connections from other gateways in the network. The default is 9001. | 9001 |
 | blockchain-ip | The IP address of your Bitcoi Cash full node. Default is "127.0.0.1".  | "127.0.0.1" |
 | blockchain-port | The port of your Ethereum full node. Default is 8333. Because we are using the testnet, this should be set to 18333.  | 8333 |
 | continent | The continent of your Ethereum full node. Valid `continent` values are `NA` (North America), `SA` (South and Central America), `EU` (Europe), `OC` (Oceania), `AS` (Asia), `AF` (Africa), `AN` (Antarctica). | AS |
-| country | The country of your Ethereum full node. | China |
+
 
 
