@@ -4,6 +4,8 @@ This document describes installation of the bloXroute Blockchain-Logger for the 
 
 The Blockchain-Logger is a small piece of software created by bloXroute to record block propagation statistics across p2p blockchain networks. It does not provide any block propagation performance improvements and permits us to measure block propagation without the bloXroute network. 
 
+For our mining pool participants, we ask that you connect the Blockchain-Logger to a node connected to your production mining pool as it is important for our test that we are connected as close as possible to the sources of new blocks. 
+
 This document describes two ways that you may install the Blockchain-Logger, using either packaged docker images, or via a github download. 
 
 
@@ -13,7 +15,7 @@ This document describes two ways that you may install the Blockchain-Logger, usi
 
 This section describes the installation of the bloXroute Gateway in a pre-packaged Docker form. This section assumes you have Docker installed and that you have created an account with Docker Hub and provided the account name or email address to bloXroute. Additionally, this section assumes that the RPC ports for the full node are open to receive RPC commands. 
 
-1. For proper functioning, the Blockchain-Logger needs your ethereum node to be running at verboisty level 3 and exposing the appropriate rpc apis. You can ensure that your geth client has sufficient verbosity for its logs by starting geth with `--verbosity=3` or `--vmodule="miner=3,core=3"`. You may also change verbosity from the `geth attach` console by using the command `debug.verbosity(3)` or `debug.vmodule("miner=3,core=3")`. Additionally, please enable the proper rpc apis using the following switches at startup `--rpc --rpcapi web3,eth,personal,miner,net,txpool`.
+1. For proper functioning, the Blockchain-Logger needs your ethereum node to be running at verbosity level 3 and exposing the appropriate rpc apis. You can ensure that your geth client has sufficient verbosity for its logs by starting geth with `--verbosity=3` or `--vmodule="miner=3,core=3"`. You may also change verbosity from the `geth attach` console by using the command `debug.verbosity(3)` or `debug.vmodule("miner=3,core=3")`. Additionally, please enable the proper rpc apis using the following switches at startup `--rpc --rpcapi web3,eth,personal,miner,net,txpool`.
 1. Docker login
 
     ```
