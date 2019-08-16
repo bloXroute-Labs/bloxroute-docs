@@ -21,6 +21,8 @@ Currently, we are only distributing our docker image from a private Docker Hub r
 
 2. Provide bloXroute with username or email address for the account. We will add you to our team so you can access the docker image. 
 
+1. Determine your node ID for your ethereum full node. You can retrieve your node ID using the ethereum rpc command [admin.nodeInfo](https://github.com/ethereum/go-ethereum/wiki/Management-APIs#admin_nodeinfo). The hexadecimal node ID is encoded in the username portion of the enode URL, separated from the host by an @ sign (For more, see https://github.com/ethereum/wiki/wiki/enode-url-format).
+
 3. Docker login
 
     ```
@@ -33,15 +35,26 @@ Currently, we are only distributing our docker image from a private Docker Hub r
    docker pull bloxroute/bxgateway:latest
    ```
 	
-5. Run the docker as a daemon. The gateway accepts various parameters as described in the Gateway Parameters section below. The parameters may be passed in the run command to provide the IP address and port of the full node, etc. If using the "external-port" parameter, please update "-p 9001:9001" to "-p (new port):(new port)".
+5. Run the docker as a daemon. The gateway accepts various parameters as described in the Gateway Parameters section below. The parameters may be passed in the run command to provide the IP address and port of the full node, etc. If using the "external-port" parameter, please update "-p 9001:9001" to "-p (new port):(new port)". Be sure to replace "\<YOUR NODE ID\>" with your node id. 
    ```
-   docker run -d --name gateway -p 9001:9001 bloxroute/bxgateway:latest --blockchain-protocol Ethereum --blockchain-network Mainnet --blockchain-ip 172.17.0.1 --blockchain-port 30303 
+   docker run -d --name gateway -p 9001:9001 bloxroute/bxgateway:latest --blockchain-protocol Ethereum --blockchain-network Mainnet --blockchain-ip 172.17.0.1 --blockchain-port 30303  --node-public-key="<YOUR NODE ID>"
    ```
 
 
 ### Pip Installation
 
-#### (Coming soon)
+This section describes the installation of the bloXroute Gateway using pip. These instructions assume you are running Ubuntu 18.04, Centos, or Alpine Linux with Python 3.6 or 3.7 installed. Additional steps may be necessary depending on your system. Please see [https://pypi.org/project/bloxroute-gateway/#description](https://pypi.org/project/bloxroute-gateway/#description) for more. 
+
+1. Determine your node ID for your ethereum full node. You can retrieve your node ID using the ethereum rpc command [admin.nodeInfo](https://github.com/ethereum/go-ethereum/wiki/Management-APIs#admin_nodeinfo). The hexadecimal node ID is encoded in the username portion of the enode URL, separated from the host by an @ sign (For more, see https://github.com/ethereum/wiki/wiki/enode-url-format).
+
+1. Install via pip 
+   ```
+    pip install bloxroute-gateway
+    ```
+2. Run the gateway. The gateway accepts various parameters as described in the Gateway Parameters section below. The parameters may be passed to provide the IP address and port of the full node, etc.  Be sure to replace "\<YOUR NODE ID\>" with your node id. 
+   ```
+   bloxroute_gateway --blockchain-protocol Ethereum --blockchain-network Mainnet  --node-public-key="<YOUR NODE ID>"
+   ```
 
 ### Gateway Parameters
 **Required Gateway Parameters**
@@ -50,6 +63,7 @@ Currently, we are only distributing our docker image from a private Docker Hub r
 | --------- | ----------- | -------------|
 | blockchain-protocol | Blockchain protocol gateway is connecting to. This test is only on the Ethereum network. | Ethereum |
 | blockchain-network | Blockchain network gateway is connecting to (Mainnet or Testnet). This test is only on the Mainnet. | Mainnet |
+| node-public-key | node ID of your ethereum node. You can retrieve your node ID using the ethereum rpc command [admin.nodeInfo](https://github.com/ethereum/go-ethereum/wiki/Management-APIs#admin_nodeinfo).  | N/A |
 
 **Optional Gateway Parameters**
 
@@ -57,10 +71,10 @@ These parameters should not be changed unless needed.
 
 | Parameter | Description | Example |
 | --------- | ----------- | -------------|
-| external-ip | External IP is the external network IP of the Gateway on which the gateway can receive external connections from other gateways in the network. | None |
+| external-ip | External IP is the external network IP of the Gateway on which the gateway can receive external connections from other gateways in the network. Please specify your IP address using external-ip if the gateway cannot access the url "http://checkip.dyndns.org/" to automatically detect its IP address. | None |
 | external-port | External port is the port on which the gateway can receive external connections from other gateways in the network. The default is 9001. | 9001 |
-| blockchain-ip | The IP address of your Bitcoi Cash full node. Default is "127.0.0.1".  | "127.0.0.1" |
-| blockchain-port | The port of your Ethereum full node. Default is 8333. Because we are using the testnet, this should be set to 18333.  | 8333 |
+| blockchain-ip | The IP address of your Ethereum full node. Default is "127.0.0.1".  | "127.0.0.1" |
+| blockchain-port | The port of your Ethereum full node. Default is 30303.   | 30303 |
 | continent | The continent of your Ethereum full node. Valid `continent` values are `NA` (North America), `SA` (South and Central America), `EU` (Europe), `OC` (Oceania), `AS` (Asia), `AF` (Africa), `AN` (Antarctica). | AS |
 
 
