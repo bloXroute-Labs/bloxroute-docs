@@ -71,7 +71,7 @@ These parameters should not be changed unless needed.
 
 | Parameter | Description | Example |
 | --------- | ----------- | -------------|
-| external-ip | External IP is the external network IP of the Gateway on which the gateway can receive external connections from other gateways in the network. | None |
+| external-ip | External IP is the external network IP of the Gateway on which the gateway can receive external connections from other gateways in the network. Please specify your IP address using external-ip if the gateway cannot access the url "http://checkip.dyndns.org/" to automatically detect its IP address. | None |
 | external-port | External port is the port on which the gateway can receive external connections from other gateways in the network. The default is 9001. | 9001 |
 | blockchain-ip | The IP address of your Ethereum full node. Default is "127.0.0.1".  | "127.0.0.1" |
 | blockchain-port | The port of your Ethereum full node. Default is 30303.   | 30303 |
