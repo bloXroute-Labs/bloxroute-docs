@@ -43,7 +43,7 @@ Currently, we are only distributing our docker image from a private Docker Hub r
 
 ### Pip Installation
 
-This section describes the installation of the bloXroute Gateway using pip. Additional steps may be necessary depending on your system. Please see [https://pypi.org/project/bloxroute-gateway-aspin/#description](https://pypi.org/project/bloxroute-gateway-aspin/#description) for more. 
+This section describes the installation of the bloXroute Gateway using pip. Additional steps may be necessary depending on your system. Please see [https://pypi.org/project/bloxroute-gateway/#description](https://pypi.org/project/bloxroute-gateway/#description) for more. 
 
 1. Determine your node ID for your ethereum full node. You can retrieve your node ID using the ethereum rpc command [admin.nodeInfo](https://github.com/ethereum/go-ethereum/wiki/Management-APIs#admin_nodeinfo). The hexadecimal node ID is encoded in the username portion of the enode URL, separated from the host by an @ sign (For more, see https://github.com/ethereum/wiki/wiki/enode-url-format).
 
