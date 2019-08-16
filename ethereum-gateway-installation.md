@@ -35,9 +35,9 @@ Currently, we are only distributing our docker image from a private Docker Hub r
    docker pull bloxroute/bxgateway:latest
    ```
 	
-5. Run the docker as a daemon. The gateway accepts various parameters as described in the Gateway Parameters section below. The parameters may be passed in the run command to provide the IP address and port of the full node, etc. If using the "external-port" parameter, please update "-p 9001:9001" to "-p (new port):(new port)". Be sure to replace "\<YOUR NODE ID\>" with your node id. 
+5. Run the docker as a daemon. The gateway accepts various parameters as described in the Gateway Parameters section below. The parameters may be passed in the run command to provide the IP address and port of the full node, etc. If using the "external-port" parameter, please update "-p 9001:9001" to "-p (new port):(new port)". Be sure to replace "\<YOUR NODE PUBLIC KEY\>" with your node id. 
    ```
-   docker run -d --name gateway -p 9001:9001 bloxroute/bxgateway:latest --blockchain-protocol Ethereum --blockchain-network Mainnet --blockchain-ip 172.17.0.1 --blockchain-port 30303  --node-public-key="<YOUR NODE ID>"
+   docker run -d --name gateway -p 9001:9001 bloxroute/bxgateway:latest --blockchain-protocol Ethereum --blockchain-network Mainnet --blockchain-ip 172.17.0.1 --blockchain-port 30303  --node-public-key="<YOUR NODE PUBLIC KEY>"
    ```
 
 
@@ -51,9 +51,9 @@ This section describes the installation of the bloXroute Gateway using pip. Thes
    ```
     pip install bloxroute-gateway
     ```
-2. Run the gateway. The gateway accepts various parameters as described in the Gateway Parameters section below. The parameters may be passed to provide the IP address and port of the full node, etc.  Be sure to replace "\<YOUR NODE ID\>" with your node id. 
+2. Run the gateway. The gateway accepts various parameters as described in the Gateway Parameters section below. The parameters may be passed to provide the IP address and port of the full node, etc.  Be sure to replace "\<YOUR NODE PUBLIC KEY\>" with your node id. 
    ```
-   bloxroute_gateway --blockchain-protocol Ethereum --blockchain-network Mainnet  --node-public-key="<YOUR NODE ID>"
+   bloxroute_gateway --blockchain-protocol Ethereum --blockchain-network Mainnet  --node-public-key="<YOUR NODE PUBLIC KEY>"
    ```
 
 ### Gateway Parameters
